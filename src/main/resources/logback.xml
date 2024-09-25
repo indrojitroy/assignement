@@ -1,0 +1,36 @@
+<configuration>
+    <!-- Appender for console output -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern> <!-- Log format for console -->
+        </encoder>
+    </appender>
+
+    <!-- Appender for scheduled task log -->
+    <appender name="SCHEDULED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/scheduled-task-log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/scheduled-task-log-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern> <!-- Log format for file -->
+        </encoder>
+    </appender>
+
+    <!-- Logger for scheduled task logs -->
+    <logger name="com.verve.assignment.service.EventCounterService" level="info" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="SCHEDULED_FILE" />
+    </logger>
+
+    <!-- Logger for all other info logs in the package -->
+    <logger name="com.verve.assignment" level="info" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Root logger (optional) -->
+    <root level="error">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>
