@@ -10,3 +10,6 @@ redis support reactive programming. I chose Redis for this project because of it
 
 3. We can use kafka for streaming the data ..also websocket kind of..
 While Kafka is another great option for handling high-throughput systems.
+
+** Docker image is pushed in gitcr can be pulled and run using below command give have docker runtime setup **
+ docker run -p 8080:8080 ghcr.io/indrojitroy/assignement:latest
